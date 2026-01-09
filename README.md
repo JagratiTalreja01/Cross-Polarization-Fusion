@@ -108,9 +108,8 @@ Copy code
 # Example: Train CPF with Autoencoder backbone
 python train_cpf_ae.py
 ```
-Test
+## Test
 Quick Start
-Ensure trained model checkpoints are available.
 
 Update paths for test CSV and model weights in config.py.
 
