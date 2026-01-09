@@ -127,3 +127,15 @@ We use the **DeepFlood dataset**, derived from:
 
 ## 📁 Repository Structure
 
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/yourusername/cpf-flood-mapping.git
+cd cpf-flood-mapping
+pip install -r requirements.txt
+python train_unet.py
+
+
