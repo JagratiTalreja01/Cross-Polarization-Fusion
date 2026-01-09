@@ -156,9 +156,11 @@ CPF consistently outperforms single-polarization baselines (VV-only, VH-only) ac
 Qualitative Visualization
 
 Visual Results
+UNet
+![Result1](./Figures/FIGURE4.PNG)
 
-![Result1](./Figures/FIGURE3.PNG)
-![Result2](./Figures/FIGURE4.PNG)
+Auto-Encoder
+![Result2](./Figures/FIGURE3.PNG)
 
 ---
 
