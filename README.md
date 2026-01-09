@@ -35,7 +35,8 @@ CPF consistently improves flood delineation accuracy, particularly in vegetated,
 
 ---
 
-![CPF Architecture](./Figures/FIGURE1.PNG)
+![SAR_VV & SAR_VH Fusion](./Figures/FIGURE1.PNG)
+![CPF Architecture](./Figures/FIGURE2.PNG)
 
 ---
 
