@@ -108,6 +108,8 @@ Copy code
 # Example: Train CPF with Autoencoder backbone
 python train_cpf_ae.py
 ```
+---
+
 ## Test
 Quick Start
 
@@ -123,7 +125,10 @@ or
 # Example: Test CPF with Autoencoder 
 python eval_cpf_ae.py
 ```
-Results
+---
+
+## Results
+
 Quantitative Performance
 CPF consistently outperforms single-polarization baselines (VV-only, VH-only) across IoU and F1-score metrics on the DeepFlood dataset.
 
