@@ -157,12 +157,7 @@ Visual Results
 ![Result1](./Figures/FIGURE3.PNG)
 ![Result2](./Figures/FIGURE4.PNG)
 
+---
 
-Acknowledgements
-This work builds upon open-source segmentation frameworks in PyTorch and benefits from the DeepFlood dataset.
-
-The authors acknowledge support from:
-
-NASA Award 80NSSC23M0051
-
-NSF Award 2401942
+## Acknowledgements
+The authors acknowledge support from NASA Award 80NSSC23M0051 and NSF Award 2401942
