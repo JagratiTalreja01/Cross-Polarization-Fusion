@@ -127,30 +127,30 @@ Results
 Quantitative Performance
 CPF consistently outperforms single-polarization baselines (VV-only, VH-only) across IoU and F1-score metrics on the DeepFlood dataset.
 
+### U-Net Results
+| Input | IoU (%) | F1-score (%) |
+|------|--------|--------------|
+| VV only | 66.2 | 79.7 |
+| VH only | 62.5 | 76.9 |
+| **CPF (VV, VH)** | **69.8** | **82.2** |
+
+### Autoencoder Results
+| Input | IoU (%) | F1-score (%) |
+|------|--------|--------------|
+| VV only | 60.4 | 75.3 |
+| VH only | 57.1 | 72.7 |
+| **CPF (VV, VH)** | **63.2** | **77.5** |
+
+✔ Consistent gains  
+✔ Better performance in vegetated and mixed land–water regions  
+✔ Improved generalization to unseen flood events
+
 Qualitative Visualization
-Each result panel includes:
-
-SAR VV
-
-SAR VH
-
-CPF (VV + VH)
-
-Ground-truth flood mask
-
-Prediction probability map
-
-Overlay of prediction on:
-
-VV
-
-VH
-
-CPF fusion output
 
 Visual Results
 
-
+![Result1](./Figures/FIGURE3.PNG)
+![Result2](./Figures/FIGURE4.PNG)
 
 
 Acknowledgements
