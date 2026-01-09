@@ -138,4 +138,51 @@ cd cpf-flood-mapping
 pip install -r requirements.txt
 python train_unet.py
 
+📄 Paper & Citation
+
+If you use this work, please cite:
+@inproceedings{talreja2026cpf,
+  title     = {Cross-Polarization Fusion of VV and VH SAR Observations for Improved Flood Mapping},
+  author    = {Talreja, Jagrati and Gebre, Tewodros Syum and Hashemi-Beni, Leila},
+  booktitle = {IEEE International Geoscience and Remote Sensing Symposium (IGARSS)},
+  year      = {2026}
+}
+
+🧪 Why This Matters
+
+Flood mapping fails most where it matters most:
+
+Vegetation
+
+Urban clutter
+
+Mixed scattering environments
+
+CPF fixes that—without deeper networks, heavier models, or more data.
+
+Simple idea. Solid gains. Reviewer-proof.
+
+🤝 Acknowledgments
+
+This work is supported by:
+
+NASA Award 80NSSC23M0051
+
+NSF Award 2401942
+
+⭐ Star the Repo
+
+If CPF saved you from thresholding nightmares or reviewer 2—
+you know what to do.
+
+
+---
+
+If you want, next I can:
+- Split this into **`README.md` + `MODEL.md` + `DATASET.md`**
+- Add **badges** (paper, license, PyTorch, Sentinel-1)
+- Align it with **CVPR / TGRS open-source standards**
+- Generate a **diagram-only README section** for quick scanning
+
+
 
