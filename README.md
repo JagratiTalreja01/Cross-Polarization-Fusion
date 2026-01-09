@@ -153,9 +153,8 @@ CPF consistently outperforms single-polarization baselines (VV-only, VH-only) ac
 ✔ Better performance in vegetated and mixed land–water regions  
 ✔ Improved generalization to unseen flood events
 
-Qualitative Visualization
+Qualitative Visualization (Visual Results)
 
-Visual Results
 UNet
 ![Result1](./Figures/FIGURE4.PNG)
 
