@@ -34,8 +34,9 @@ The fusion module is designed to be **architecture-agnostic** and is evaluated w
 CPF consistently improves flood delineation accuracy, particularly in vegetated, urban, and mixed land–water environments where single-polarization methods fail.
 
 ---
-
+<p align="center">
 ![SAR_VV & SAR_VH Fusion](./Figures/FIGURE1.PNG)
+</p>
 ![CPF Architecture](./Figures/FIGURE2.PNG)
 
 ---
@@ -131,20 +132,23 @@ python eval_cpf_ae.py
 
 Quantitative Performance
 CPF consistently outperforms single-polarization baselines (VV-only, VH-only) across IoU and F1-score metrics on the DeepFlood dataset.
-
+<p align="center">
 ### U-Net Results
 | Input | IoU (%) | F1-score (%) |
 |------|--------|--------------|
 | VV only | 66.2 | 79.7 |
 | VH only | 62.5 | 76.9 |
 | **CPF (VV, VH)** | **69.8** | **82.2** |
+</p>
 
+<p align="center">
 ### Autoencoder Results
 | Input | IoU (%) | F1-score (%) |
 |------|--------|--------------|
 | VV only | 60.4 | 75.3 |
 | VH only | 57.1 | 72.7 |
 | **CPF (VV, VH)** | **63.2** | **77.5** |
+</p>
 
 ✔ Consistent gains  
 ✔ Better performance in vegetated and mixed land–water regions  
