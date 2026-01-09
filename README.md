@@ -102,13 +102,11 @@ Navigate to the project root and run:
 
 ```bash
 # Example: Train CPF with U-Net backbone
-python train_unet.py
+python train_cpf.py
 or
-
-bash
 Copy code
 # Example: Train CPF with Autoencoder backbone
-python train_autoencoder.py
+python train_cpf_ae.py
 ```
 Test
 Quick Start
@@ -120,8 +118,11 @@ Run:
 
 ```bash
 Copy code
-# Test CPF model
-python test.py
+# Test CPF with UNet 
+python eval_cpf.py
+or
+# Example: Test CPF with Autoencoder 
+python eval_cpf_ae.py
 ```
 Results
 Quantitative Performance
