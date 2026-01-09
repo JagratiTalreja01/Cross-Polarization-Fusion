@@ -1,188 +1,162 @@
-# Cross-Polarization Fusion (CPF) for SAR-Based Flood Mapping
+# CPF
+CPF: Cross-Polarization Fusion for SAR-Based Flood Mapping is an attention-driven deep learning framework designed to fuse Sentinel-1 VV and VH polarizations for accurate flood segmentation.
 
-Official implementation of the paper:
-
-**Cross-Polarization Fusion of VV and VH SAR Observations for Improved Flood Mapping**  
-Jagrati Talreja, Tewodros Syum Gebre, Leila Hashemi-Beni  
-*IEEE IGARSS 2026 (under review)*
+The code is implemented in PyTorch and tested on Ubuntu 20.04.6 (Python 3.10+, PyTorch ≥ 1.11) with NVIDIA RTX A4000 (16GB VRAM).
 
 ---
 
-## 🌊 Motivation
-
-Synthetic Aperture Radar (SAR) is the gold standard for flood mapping—clouds, rain, darkness? SAR doesn’t care.
-
-But here’s the catch:
-- **VV polarization** → great for open water and smooth surfaces  
-- **VH polarization** → better for vegetation and partially inundated areas  
-
-Most methods pick *one* and call it a day.
-
-**CPF doesn’t.**  
-It explicitly *models the interaction* between VV and VH using attention-based fusion, instead of naive channel stacking.
+## Contents
+1. [Introduction](#introduction)
+2. [Key Highlights](#key-highlights)
+3. [Dependencies](#dependencies)
+4. [Train](#train)
+5. [Test](#test)
+6. [Results](#results)
+7. [Acknowledgements](#acknowledgements)
 
 ---
 
-## 🧠 Key Idea: Cross-Polarization Fusion (CPF)
+## Introduction
 
-CPF is an **attention-driven fusion module** designed to:
-- Preserve polarization-specific scattering behavior
-- Adaptively emphasize informative regions and channels
-- Improve flood boundary delineation in heterogeneous environments
+This repository provides the official implementation of **CPF — Cross-Polarization Fusion**, a modular fusion strategy for flood mapping using dual-polarized Sentinel-1 SAR imagery.
 
-### What makes CPF different?
-✔ Separate feature extraction for VV and VH  
-✔ Bidirectional cross-polarization attention  
-✔ Plug-and-play (no architecture redesign required)
+Unlike conventional SAR-based flood mapping approaches that rely on a single polarization (VV or VH) or naive channel concatenation, CPF explicitly models the complementary scattering behavior of VV and VH through a learnable attention-based fusion mechanism.
 
----
+CPF introduces:
+- Independent feature extraction for VV and VH channels
+- Bidirectional cross-polarization attention
+- Adaptive feature recalibration before segmentation
 
-## 🏗 Architecture Overview
+The fusion module is designed to be **architecture-agnostic** and is evaluated with both:
+- A U-Net segmentation backbone
+- A convolutional autoencoder (without skip connections)
 
-**Pipeline**
-1. VV and VH processed independently with lightweight convolutional stems
-2. Features fused using **CPF module**
-3. Fused representation passed to a segmentation backbone
-
-**Backbones supported**
-- U-Net (with skip connections)
-- Convolutional Autoencoder (no skips)
-
-> CPF is inserted at the **input stage** so improvements come from fusion—not deeper networks.
+CPF consistently improves flood delineation accuracy, particularly in vegetated, urban, and mixed land–water environments where single-polarization methods fail.
 
 ---
 
-## 📊 Experimental Results
-
-Evaluated under identical training conditions using:
-- VV-only
-- VH-only
-- CPF (VV + VH)
-
-### U-Net Results
-| Input | IoU (%) | F1-score (%) |
-|------|--------|--------------|
-| VV only | 66.2 | 79.7 |
-| VH only | 62.5 | 76.9 |
-| **CPF (VV, VH)** | **69.8** | **82.2** |
-
-### Autoencoder Results
-| Input | IoU (%) | F1-score (%) |
-|------|--------|--------------|
-| VV only | 60.4 | 75.3 |
-| VH only | 57.1 | 72.7 |
-| **CPF (VV, VH)** | **63.2** | **77.5** |
-
-✔ Consistent gains  
-✔ Better performance in vegetated and mixed land–water regions  
-✔ Improved generalization to unseen flood events
+![CPF Architecture](./Figures/architecture.png)
 
 ---
 
-## 🖼 Qualitative Results
+## Key Highlights
 
-Each result panel includes:
-- SAR VV
-- SAR VH
-- CPF (VV, VH)
-- Ground truth flood mask
-- Prediction probability map
-- Overlay of prediction on:
-  - VV
-  - VH
-  - CPF (VV, VH)
+* **Cross-Polarization Attention Fusion**  
+  Explicitly models interactions between VV and VH features instead of simple stacking or averaging.
 
-This makes failure cases *painfully obvious*—which is exactly what you want.
+* **Plug-and-Play Design**  
+  CPF can be integrated into existing segmentation architectures without increasing depth or parameter count significantly.
 
----
+* **Polarization-Aware Learning**  
+  Preserves polarization-specific scattering characteristics while enhancing complementary responses.
 
-## 🗂 Dataset
+* **Backbone-Agnostic Evaluation**  
+  Validated using both U-Net (with skip connections) and Autoencoder architectures.
 
-We use the **DeepFlood dataset**, derived from:
-- Hurricane Matthew (2016)
-- Hurricane Florence (2018)
+* **Improved Flood Boundary Delineation**  
+  Produces cleaner water boundaries and reduces false positives in vegetation-covered and urban regions.
 
-**Sensor**
-- Sentinel-1 SAR  
-- Dual polarization: VV & VH  
-- Resolution: 10 m  
-
-**Evaluation strategy**
-- Train: Hurricane Florence
-- Test: Hurricane Matthew (cross-event generalization)
+* **Robust Cross-Event Generalization**  
+  Trained and tested across different flood events to ensure temporal and geographic robustness.
 
 ---
 
-## ⚙️ Training Details
+## Dependencies
 
-- Task: Binary flood segmentation
-- Loss: Binary Cross-Entropy
-- Optimizer: Same across all experiments
-- Augmentation: Random flips and rotations
-- Metrics: IoU, F1-score, Overall Accuracy
-
-> No tricks. No cherry-picking. Fair comparisons only.
-
----
-
-## 📁 Repository Structure
-
+* Python 3.10+
+* PyTorch ≥ 1.11.0
+* CUDA 11.x / 12.x
+* numpy
+* matplotlib
+* scikit-image
+* imageio
+* tqdm
+* opencv-python (optional, for visualization)
 
 ---
 
-## 🚀 Getting Started
+## Train
+
+### Prepare Training Data
+
+1. Download the **DeepFlood Dataset**, which includes co-registered Sentinel-1 SAR VV/VH images and flood masks:  
+   https://figshare.com/articles/dataset/DEEPFLOOD_DATASET_High-Resolution_Dataset_for_Accurate_Flood_Mappingand_Segmentation/28328339
+
+2. Use **SAR_VV** and **SAR_VH** as dual-channel inputs.
+
+3. Create dataset splits:
+   - 80% training  
+   - 10% validation  
+   - 10% testing  
+
+4. Generate CSV index files for train/val/test splits.
+
+5. Specify dataset paths in `config.py`.
+
+---
+
+### Begin Training
+
+Navigate to the project root and run:
 
 ```bash
-git clone https://github.com/yourusername/cpf-flood-mapping.git
-cd cpf-flood-mapping
-pip install -r requirements.txt
+# Example: Train CPF with U-Net backbone
 python train_unet.py
+or
 
-📄 Paper & Citation
+bash
+Copy code
+# Example: Train CPF with Autoencoder backbone
+python train_autoencoder.py
+```
+Test
+Quick Start
+Ensure trained model checkpoints are available.
 
-If you use this work, please cite:
-@inproceedings{talreja2026cpf,
-  title     = {Cross-Polarization Fusion of VV and VH SAR Observations for Improved Flood Mapping},
-  author    = {Talreja, Jagrati and Gebre, Tewodros Syum and Hashemi-Beni, Leila},
-  booktitle = {IEEE International Geoscience and Remote Sensing Symposium (IGARSS)},
-  year      = {2026}
-}
+Update paths for test CSV and model weights in config.py.
 
-🧪 Why This Matters
+Run:
 
-Flood mapping fails most where it matters most:
+```bash
+Copy code
+# Test CPF model
+python test.py
+```
+Results
+Quantitative Performance
+CPF consistently outperforms single-polarization baselines (VV-only, VH-only) across IoU and F1-score metrics on the DeepFlood dataset.
 
-Vegetation
+Qualitative Visualization
+Each result panel includes:
 
-Urban clutter
+SAR VV
 
-Mixed scattering environments
+SAR VH
 
-CPF fixes that—without deeper networks, heavier models, or more data.
+CPF (VV + VH)
 
-Simple idea. Solid gains. Reviewer-proof.
+Ground-truth flood mask
 
-🤝 Acknowledgments
+Prediction probability map
 
-This work is supported by:
+Overlay of prediction on:
+
+VV
+
+VH
+
+CPF fusion output
+
+Visual Results
+
+
+
+
+Acknowledgements
+This work builds upon open-source segmentation frameworks in PyTorch and benefits from the DeepFlood dataset.
+
+The authors acknowledge support from:
 
 NASA Award 80NSSC23M0051
 
 NSF Award 2401942
-
-⭐ Star the Repo
-
-If CPF saved you from thresholding nightmares or reviewer 2—
-you know what to do.
-
-
----
-
-If you want, next I can:
-- Split this into **`README.md` + `MODEL.md` + `DATASET.md`**
-- Add **badges** (paper, license, PyTorch, Sentinel-1)
-- Align it with **CVPR / TGRS open-source standards**
-- Generate a **diagram-only README section** for quick scanning
-
-
-
