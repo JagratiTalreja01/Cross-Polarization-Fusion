@@ -12,7 +12,8 @@ The code is implemented in PyTorch and tested on Ubuntu 20.04.6 (Python 3.10+, P
 4. [Train](#train)
 5. [Test](#test)
 6. [Results](#results)
-7. [Acknowledgements](#acknowledgements)
+7. [Citation](#citation)
+8. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -163,5 +164,19 @@ Auto-Encoder
 
 ---
 
+
+## Citation
+If you find the code helpful in your research or work, please cite the following papers.
+```
+@article{talreja2026cross,
+  title={Cross-Polarization Fusion of VV AND VH SAR Observations for Improved Flood Mapping},
+  author={Talreja, Jagrati and Gebre, Tewodros Syum and Beni, Leila Hashemi},
+  journal={arXiv preprint arXiv:2605.02153},
+  year={2026}
+}
+
+```
+
 ## Acknowledgements
-The authors acknowledge support from NASA Award 80NSSC23M0051 and NSF Award 2401942
+This research article has been made possible by the support of the National Aeronautics and Space Administration (NASA) award 80NSSC23M0051 and the National Science Foundation (NSF) Award 2401942.
+
