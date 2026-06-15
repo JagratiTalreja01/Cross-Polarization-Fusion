@@ -1,5 +1,5 @@
 # CPF
-CPF: Cross-Polarization Fusion for SAR-Based Flood Mapping is an attention-driven technique designed to fuse Sentinel-1 VV and VH polarizations for accurate flood segmentation.
+CPF: Cross-Polarization Fusion for SAR-Based Flood Mapping is an attention-driven technique designed to fuse Sentinel-1 VV and VH polarizations for accurate flood segmentation. The paper has been accepted in IEEE International Symposium on Geoscience and Remote Sensing (IGARSS) 2026. [Paper](https://arxiv.org/abs/2605.02153) 
 
 The code is implemented in PyTorch and tested on Ubuntu 20.04.6 (Python 3.10+, PyTorch ≥ 1.11) with NVIDIA RTX A4000 (16GB VRAM).
 
